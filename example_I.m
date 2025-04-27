@@ -545,30 +545,30 @@ y_alphav=[] ;
 x_betav=[] ;
 y_betav=[] ;            
             
-% 29.3) Definindo maior e menor parte real dos polos do sistema
+% 29.3) Defining the largest and smallest real part of the poles of the system
 min_real_aut=min(real(eigenvalues)); 
 max_real_aut=max(real(eigenvalues));                
 
-% 29.4) Computar maior e menor parte real da regiao disco
+% 29.4) Compute the largest and smallest real part of the disk region
 min_real_disk=-q_d-r_d;
 max_real_disk=-q_d+r_d;
 
-% 29.5) Computar maior e menor parte real da regiao dos pontos coordenados
+% 29.4) Compute the largest and smallest real part of the disk region
 min_real=min([min_real_aut,min_real_disk,-beta_v]);
 
 max_real=max([max_real_aut,max_real_disk,-alpha_v]);
 max_real=min([max_real,0]);
 
-% 29.6) Computar maior parte imaginaria dos polos do sistema
+% 29.6) Compute the largest imaginary part of the poles of the system
 max_imag_aut=max(imag(eigenvalues));
 
-% 29.7) Computar maior parte imaginaria da regiao setor
+% 29.7) Compute the largest imaginary part of the sector region
 max_imag_sector=-min_real*tan(theta_s);
 
-% 29.8) Computar maior parte imaginaria dos pontos coordenados
+% 29.8) Compute the largest imaginary part of the coordinate points
 max_imag=max([max_imag_aut, max_imag_sector, w_H, r_d]);
 
-% 29.9) Construir pontos coordenados das curvas de fronteira
+% 29.9) Determine the coordinate points corresponding to the boundary curves
 for i=1:100
     xt=min_real+(i-1)*(max_real-min_real)/99;
     if ~isempty(w_H)
