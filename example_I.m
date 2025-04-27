@@ -553,7 +553,7 @@ max_real_aut=max(real(eigenvalues));
 min_real_disk=-q_d-r_d;
 max_real_disk=-q_d+r_d;
 
-% 29.4) Compute the largest and smallest real part of the disk region
+29.5) Compute the largest and smallest real parts of the region of the coordinate points
 min_real=min([min_real_aut,min_real_disk,-beta_v]);
 
 max_real=max([max_real_aut,max_real_disk,-alpha_v]);
