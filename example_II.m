@@ -594,46 +594,150 @@ title('Complex Plane','FontSize',12)
 legend('Open','Theorem 2','Theorem 7','Frontier',...
        'Interpreter','latex','FontSize',10)
 
-%   30) Numerical Integral Table of the Absolute Value of the Control Action
-%      30.1) Transient Response - free allocation
-[y_theorem_2,t_theorem_2,x_theorem_2] = ...
-    step(system_y_theorem_2,0:0.01:14);
-
-%      30.2) Control action - free allocation         
-u_theorem_2(1:size(x_theorem_2,1),1:n_u,1)=...
-    x_theorem_2(:,:,1)*Kpf_theorem_2';
-
-%      30.3) Transient Response - partial multistep allocation                                 
-[y_theorem_7,t_theorem_7,x_theorem_7] = ...
-    step(system_y_theorem_7,0:0.01:14);
-
-%      30.4) Control action - partial multistep allocation 
-u_theorem_7(1:size(x_theorem_2,1),1:n_u,1)=...
-    x_theorem_7(:,:,1)*Kpf_theorem_7';
-
-%   31) Figure - control actions
+%   30) Impulse, Step and Bode graph
 figure
-%       31.1) Response u1(t) to step input d1(t)    
-subplot(211)
-plot(t_theorem_2,u_theorem_2(1:end,1),'-r',...
-     t_theorem_7,u_theorem_7(1:end,1),'-b')
-title('u_1(t) before step d(t)',...
-       'Interpreter','latex','FontSize',10)
-legend( 'theorem 2','theorem 7',...
-       'Interpreter','latex','FontSize',10)
+subplot(131)
+impulseplot(Canon_Godys,system_y_theorem_2,system_y_theorem_7)
+title('Impulse G_o_d_y(s)','FontSize',12)
+legend('open-loop','theorem 2','theorem 7','FontSize',10)
+grid on;
+set(findall(gcf, 'Type', 'line'), 'LineWidth', 2);% Set thickness for all lines
 
-%       31.2) Response u2(t) to step input d1(t)            
-subplot(212)
-plot(t_theorem_2,u_theorem_2(1:end,2),'-r',...
-     t_theorem_7,u_theorem_7(1:end,2),'-b')
-title('u_2(t) before step d(t)',...
-       'Interpreter','latex','FontSize',10)
-legend('theorem 2','theorem 7',...
-       'Interpreter','latex','FontSize',10)
-%32) Partial Fractions Functions    
+subplot(132)
+stepplot(Canon_Godys,system_y_theorem_2,system_y_theorem_7)
+title('Step G_o_d_y(s)','FontSize',12)
+legend('open-loop','theorem 2','theorem 7','FontSize',10)
+grid on;
+set(findall(gcf, 'Type', 'line'), 'LineWidth', 2);% Set thickness for all lines
+
+subplot(133)
+bodemag(Canon_Godys,system_y_theorem_2,system_y_theorem_7)
+title('Bodemag G_o_d_y(s)','FontSize',12)
+legend('open-loop','theorem 2','theorem 7','FontSize',10)
+grid on;
+set(findall(gcf, 'Type', 'line'), 'LineWidth', 2);% Set thickness for all lines
+
+figure
+subplot(131)
+impulseplot(Canon_Godzs,system_z_theorem_2,system_z_theorem_7)
+title('Impulse G_o_d_z(s)','FontSize',12)
+legend('open-loop','theorem 2','theorem 7','FontSize',10)
+grid on;
+set(findall(gcf, 'Type', 'line'), 'LineWidth', 2); % Set thickness for all lines
+
+subplot(132)
+stepplot(Canon_Godzs,system_z_theorem_2,system_z_theorem_7)
+title('Step G_o_d_z(s)','FontSize',12)
+legend('open-loop','theorem 2','theorem 7','FontSize',10)
+grid on;
+set(findall(gcf, 'Type', 'line'), 'LineWidth', 2); % Set thickness for all lines
+
+subplot(133)
+bodemag(Canon_Godzs,system_z_theorem_2,system_z_theorem_7)
+title('Bodemag G_o_d_z(s)','FontSize',12)
+legend('open-loop','theorem 2','theorem 7','FontSize',10)
+grid on;
+set(findall(gcf, 'Type', 'line'), 'LineWidth', 2); % Set thickness for all lines
+
+%   31) Value of the Time, States, Outputs and Control Signals after unit 
+%       step disturb.
+
+%      31.1) Transient Response - free allocation
+[y_theorem_2_step_disturb,...
+    t_theorem_2_step_disturb,...
+    x_theorem_2_step_disturb] = ...
+        step(system_y_theorem_2,0:0.01:14);
+
+%      31.2) Control action - free allocation         
+u_theorem_2_step_disturb(1:size(x_theorem_2_step_disturb,1),1:n_u,1)=...
+    x_theorem_2_step_disturb(:,:,1)*Kpf_theorem_2';
+
+%      31.3) Transient Response - partial multistep allocation                                 
+[y_theorem_7_step_disturb,...
+    t_theorem_7_step_disturb,...
+    x_theorem_7_step_disturb] = ...
+        step(system_y_theorem_7,0:0.01:14);
+
+%      31.4) Control action - partial multistep allocation 
+u_theorem_7_step_disturb(...
+    1:size(x_theorem_2_step_disturb,1),1:n_u,1)=...
+        x_theorem_7_step_disturb(:,:,1)*Kpf_theorem_7';
+    
+%   32) Value of the Time, States, Outputs and Control Signals after  
+%        impulse disturb.
+
+%      32.1) Transient Response - free allocation
+[y_theorem_2_impulse_disturb,...
+    t_theorem_2_impulse_disturb,...
+    x_theorem_2_impulse_disturb] = ...
+        impulse(system_y_theorem_2,0:0.01:14);
+
+%      32.2) Control action - free allocation         
+u_theorem_2_impulse_disturb(1:size(x_theorem_2_impulse_disturb,1),1:n_u,1)=...
+    x_theorem_2_impulse_disturb(:,:,1)*Kpf_theorem_2';
+
+%      32.3) Transient Response - optimal multistep allocation                                 
+[y_theorem_7_impulse_disturb,...
+    t_theorem_7_impulse_disturb,...
+    x_theorem_7_impulse_disturb] = ...
+        impulse(system_y_theorem_7,0:0.01:14);
+
+%      32.4) Control action - optimal partial allocation 
+u_theorem_7_impulse_disturb(...
+    1:size(x_theorem_2_impulse_disturb,1),1:n_u,1)=...
+        x_theorem_7_impulse_disturb(:,:,1)*Kpf_theorem_7';
+    
+%   33) Figure - control signals after unit impulse and step disturb
+figure
+
+%       33.1) Response u1(t) to step input d1(t)    
+subplot(121)
+plot(t_theorem_2_impulse_disturb,u_theorem_2_impulse_disturb(1:end,1),'-r',...
+     t_theorem_7_impulse_disturb,...
+     u_theorem_7_impulse_disturb(1:end,1),'-b')
+ 
+title('u_1(t) before impulse d_1(t)','FontSize',12)
+legend( 'theorem 2','theorem 7','FontSize',10)
+grid on;
+set(findall(gcf, 'Type', 'line'), 'LineWidth', 2);% Set thickness for all lines
+
+%       33.2) Response u1(t) to step input d1(t)    
+subplot(122)
+plot(t_theorem_2_step_disturb,u_theorem_2_step_disturb(1:end,1),'-r',...
+     t_theorem_7_step_disturb,...
+     u_theorem_7_step_disturb(1:end,1),'-b')
+ 
+title('u_1(t) before step d_1(t)','FontSize',12)
+legend( 'theorem 2','theorem 7','FontSize',10)
+grid on;
+set(findall(gcf, 'Type', 'line'), 'LineWidth', 2);% Set thickness for all lines
+
+%       33.3) Response u2(t) to step input d2(t)            
+figure
+subplot(121)
+plot(t_theorem_2_impulse_disturb,u_theorem_2_impulse_disturb(1:end,2),'-r',...
+     t_theorem_7_impulse_disturb,...
+     u_theorem_7_impulse_disturb(1:end,2),'-b')
+
+title('u_2(t) before impulse d_2(t)','FontSize',12)
+legend('theorem 2','theorem 7','FontSize',10)
+grid on;
+set(findall(gcf, 'Type', 'line'), 'LineWidth', 2);% Set thickness for all lines
+
+%       33.4) Response u2(t) to step input d2(t)            
+subplot(122)
+plot(t_theorem_2_step_disturb,u_theorem_2_step_disturb(1:end,2),'-r',...
+     t_theorem_7_step_disturb,...
+     u_theorem_7_step_disturb(1:end,2),'-b')
+grid on;
+set(findall(gcf, 'Type', 'line'), 'LineWidth', 2);% Set thickness for all lines
+
+title('u_2(t) before step d_2(t)','FontSize',12)
+legend('theorem 2','theorem 7','FontSize',10)
+
+%   34) Partial Fractions Functions    
     figure
     stepplot(GAs,'-k',GNAs,'-r',Godys,'-b',Godzs,'-y');
-    legend('G_A(s)','G_{NA}(s)','G_{ody}(s)','G_{odz}(s)',...
-       'Interpreter','latex','FontSize',10)
+    legend('G_A(s)','G_N_A(s)','G_o_d_y(s)','G_o_d_z(s)',...
+       'Interpreter','tex','FontSize',10)
     title('Step plot','FontSize',12)
-    
