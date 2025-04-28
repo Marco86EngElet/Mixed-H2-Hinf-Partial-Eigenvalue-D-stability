@@ -737,7 +737,7 @@ plot(t_theorem_2_impulse_disturb,u_theorem_2_impulse_disturb(1:end,1),'-r',...
      t_theorem_7_multistep_impulse_disturb,...
      u_theorem_7_multistep_impulse_disturb(1:end,1),'-b')
  
-title('u_1(t) before impulse d_1(t)','FontSize',12)
+title('u_1(t) after impulse d_1(t)','FontSize',12)
 legend( 'theorem 2','theorem 7 multistep','FontSize',10)
 grid on;
 set(findall(gcf, 'Type', 'line'), 'LineWidth', 2);% Set thickness for all lines
@@ -748,7 +748,7 @@ plot(t_theorem_2_step_disturb,u_theorem_2_step_disturb(1:end,1),'-r',...
      t_theorem_7_multistep_step_disturb,...
      u_theorem_7_multistep_step_disturb(1:end,1),'-b')
  
-title('u_1(t) before step d_1(t)','FontSize',12)
+title('u_1(t) after step d_1(t)','FontSize',12)
 legend( 'theorem 2','theorem 7 multistep','FontSize',10)
 grid on;
 set(findall(gcf, 'Type', 'line'), 'LineWidth', 2);% Set thickness for all lines
@@ -760,7 +760,7 @@ plot(t_theorem_2_impulse_disturb,u_theorem_2_impulse_disturb(1:end,2),'-r',...
      t_theorem_7_multistep_impulse_disturb,...
      u_theorem_7_multistep_impulse_disturb(1:end,2),'-b')
 
-title('u_2(t) before impulse d_2(t)','FontSize',12)
+title('u_2(t) after impulse d_2(t)','FontSize',12)
 legend('theorem 2','theorem 7 multistep','FontSize',10)
 grid on;
 set(findall(gcf, 'Type', 'line'), 'LineWidth', 2);% Set thickness for all lines
@@ -773,6 +773,5 @@ plot(t_theorem_2_step_disturb,u_theorem_2_step_disturb(1:end,2),'-r',...
 grid on;
 set(findall(gcf, 'Type', 'line'), 'LineWidth', 2);% Set thickness for all lines
 
-title('u_2(t) before step d_2(t)','FontSize',12)
+title('u_2(t) after step d_2(t)','FontSize',12)
 legend('theorem 2','theorem 7 multistep','FontSize',10)
-
